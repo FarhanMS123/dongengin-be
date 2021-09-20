@@ -15,12 +15,12 @@ Headers  :
 *All headers has been configured automatically*
 
 Query    :
-Key             | Value                                  | Description
-----------------|----------------------------------------|-------------------------
-`type`          | `favorite`, `search`, `recomendation`  | No description provided
-`query`         | (string)                               | No description provided
-`items_perpage` | (integer) default: 9                   | No description provided
-`page`          | (integer) default: 1                   | No description provided
+| Key             | Value                                  | Description             |
+|-----------------|----------------------------------------|--------------------------
+| `type`          | `favorite`, `search`, `recomendation`  | No description provided |
+| `query`         | (string)                               | No description provided |
+| `items_perpage` | (integer) default: 9                   | No description provided |
+| `page`          | (integer) default: 1                   | No description provided |
 
 Response :
 ```
