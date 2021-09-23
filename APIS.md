@@ -6,13 +6,14 @@ and response. You could see all interaction in the list below.
 - `POST /api/auth/login`
 - `POST /api/auth/logout`
 - `GET  /api/user`
-- `GET  /api/user/children`
-- `GET  /api/user/child/{username}`
 - `POST /api/user`
+- `GET  /api/users`
 - `GET  /api/stories`
 - `GET  /api/stories/recomendation`
 - `GET  /api/story/{story_id}`
-- `GET  /api/users`
+
+## Table of contents
+[TOC] 
 
 ## POST /api/auth/login
 
@@ -77,15 +78,87 @@ Content-Type: text/json
 }
 ```
 
+## GET /api/user
+
+Request  : `POST /api/user`
+
+Headers  :
+
+*All headers has been configured automatically*
+
+Query    :
+
+*Free of query*
+
+Response :
 ```
-HTTP/1.1 401 Unauthorized
+HTTP/1.1 200 OK
 Content-Type: text/json
 
 {
-    "code":401,
-    "status":"unauthorized",
-    "message":"auth/credential-error"
+    "username":"username123",
+    "saved_story":[1, 3, 4],    // story id
+    "points": 200
 }
+```
+
+## POST /api/user
+
+Request  : `POST /api/user`
+
+Headers  :
+
+*All headers has been configured automatically*
+
+Query    :
+
+| Key     | Value            | Description             |
+|---------|------------------|-------------------------|
+| `type`  | `add_point`      | No description provided |
+| `value` | (string|integer) | No description provided |
+
+Response :
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "message":{
+        ... query propertise ...
+    }
+}
+```
+
+## GET /api/users
+
+Request  : `GET /api/users`
+
+Headers  :
+
+*All headers has been configured automatically*
+
+Query    :
+
+| Key                        | Value                         | Description             |
+|----------------------------|------------------------------ |-------------------------|
+| `search` (optional)        | (string)                      | No description provided |
+| `sort_by` (optional)       | `points` default: `points`    | No description provided |
+| `sort_type` (optional)     | `asc`, `desc` default: `desc` | No description provided |
+| `items_perpage` (optional) | (integer) default: `10`       | No description provided |
+| `page` (optional)          | (integer) default: `1`        | No description provided |
+
+Response :
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+[
+    {
+        "username":"username123",
+        "points": 200
+    }
+]
 ```
 
 ## GET /api/stories
@@ -98,13 +171,13 @@ Headers  :
 
 Query    :
 
-| Key                 | Value                                                | Description             |
-|---------------------|------------------------------------------------------|-------------------------|
-| `search` (optional) | (string)                                             | No description provided |
-| `sort_by`           | `stars`, `publish_date`, `accessed` default: `stars` | No description provided |
-| `sort_type`         | `asc`, `desc` default: `desc`                        | No description provided |
-| `items_perpage`     | (integer) default: `9`                               | No description provided |
-| `page`              | (integer) default: `1`                               | No description provided |
+| Key                        | Value                                                         | Description             |
+|----------------------------|---------------------------------------------------------------|-------------------------|
+| `search` (optional)        | (string)                                                      | No description provided |
+| `sort_by` (optional)       | `stars`, `saved`, `publish_date`, `accessed` default: `stars` | No description provided |
+| `sort_type` (optional)     | `asc`, `desc` default: `desc`                                 | No description provided |
+| `items_perpage` (optional) | (integer) default: `9`                                        | No description provided |
+| `page` (optional)          | (integer) default: `1`                                        | No description provided |
 
 Response :
 ```
@@ -117,9 +190,77 @@ Content-Type: text/json
         "title": "Story Title",
         "description":"Lorem ipsum dolor sit amet"
         "stars": 3.2,
+        "saved": 123,
         "publish_date":"31/07/2021",
-        "accessed": 120
+        "accessed": 120,
+        "categories": []
     },
     ...
 ]
+```
+
+## GET /api/stories/recomendation
+
+Request  : `GET /api/stories/recomendation`
+
+Headers  :
+
+*All headers has been configured automatically*
+
+Query    :
+
+| Key                        | Value                  | Description             |
+|----------------------------|------------------------|-------------------------|
+| `items_perpage` (optional) | (integer) default: `9` | No description provided |
+| `page` (optional)          | (integer) default: `1` | No description provided |
+
+Response :
+```
+Content-Type: text/json
+
+[
+    {
+        "id":1,
+        "image": "https://",
+        "title": "Story Title",
+        "description":"Lorem ipsum dolor sit amet"
+        "stars": 3.2,
+        "saved": 123,
+        "publish_date":"31/07/2021",
+        "accessed": 120,
+        "categories": []
+    },
+    ...
+]
+```
+
+## GET /api/story/{story_id}
+
+Request  : `GET /api/story/{story_id}`
+
+Headers  :
+
+*All headers has been configured automatically*
+
+Query    :
+
+| Key        | Value     | Description             |
+|------------|-----------|-------------------------|
+| `story_id` | (integer) | No description provided |
+
+Response :
+```
+Content-Type: text/json
+
+{
+    "id":1,
+    "image": "https://",
+    "title": "Story Title",
+    "description":"Lorem ipsum dolor sit amet"
+    "stars": 3.2,
+    "saved": 123,
+    "publish_date":"31/07/2021",
+    "accessed": 120,
+    "categories": []
+}
 ```
