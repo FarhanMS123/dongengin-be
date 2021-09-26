@@ -3,6 +3,8 @@
 This documentation would explain how to interact with backend, including the routes, sign (headers), parameters, 
 and response. You could see all interaction in the list below.
 
+Previous API could be look from [here](APIS_old.md).
+
 - `POST /api/auth/register`
 - `POST /api/auth/login`
 - `POST /api/auth/logout`
