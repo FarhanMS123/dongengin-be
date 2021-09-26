@@ -3,12 +3,8 @@
 This documentation would explain how to interact with backend, including the routes, sign (headers), parameters, 
 and response. You could see all interaction in the list below.
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `POST /api/auth/logout`
-- `GET  /api/user`
-- `POST /api/user`
-- `GET  /api/users`
+Previous API could be look from [here](APIS_old.md).
+
 - `GET  /api/stories`
 - `GET  /api/stories/recomendation`
 - `GET  /api/story/{story_id}`
@@ -19,8 +15,8 @@ and response. You could see all interaction in the list below.
   - [`POST /api/auth/register`](#post-apiauthregister)
   - [`POST /api/auth/login`](#post-apiauthlogin)
   - [`POST /api/auth/logout`](#post-apiauthlogout)
-- [`GET  /api/user`](#get--apiuser)
-- [`POST /api/user`](#post-apiuser)
+  - [`GET  /api/user`](#get--apiuser)
+  - [`POST /api/user`](#post-apiuser)
   - [GET /api/users](#get-apiusers)
 
 ## `POST /api/auth/register`
@@ -154,7 +150,7 @@ Content-Type: text/json
 }
 ```
 
-# `GET  /api/user`
+## `GET  /api/user`
 
 Request  : `GET  /api/user`
 
@@ -208,7 +204,7 @@ Content-Type: text/json
 }
 ```
 
-# `POST /api/user`
+## `POST /api/user`
 
 Request  : `POST /api/user`
 
