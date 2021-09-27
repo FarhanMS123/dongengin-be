@@ -98,7 +98,7 @@ class Authentication extends Controller
 
             // add favorites
 
-            return response($user);
+            return response()->toJson($user);
         }
 
         return response()->json([

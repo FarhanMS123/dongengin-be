@@ -381,6 +381,17 @@ Content-Type: text/json
 }
 ```
 
+```
+HTTP/1.1 404 Not Found
+Content-Type: text/json
+
+{
+    "code":400,
+    "status":"not found",
+    "message":"story/not-found"
+}
+```
+
 ## `POST /api/story/{story_id}`
 
 Request  : `POST /api/story/{story_id}`
@@ -403,8 +414,11 @@ Query    :
 Response :
 
 **`type` = `increase_views`**
+
 **`type` = `set_favorite`**
+
 **`type` = `set_rating`**
+
 **`type` = `set_page`**
 
 ```
