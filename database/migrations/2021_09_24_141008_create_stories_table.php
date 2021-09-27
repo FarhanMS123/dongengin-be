@@ -21,8 +21,8 @@ class CreateStoriesTable extends Migration
             $table->string("routes");
             $table->string("description");
             $table->json("category");
-            $table->integer("total_views");
-            $table->integer("total_favorites");
+            $table->integer("total_views")->default(0);
+            $table->integer("total_favorites")->default(0);
             $table->integer("total_pages");
 
             $table->timestamps();

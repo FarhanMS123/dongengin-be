@@ -12,15 +12,20 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public $saved_story = [];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
+        'fullname',
+        'username',
+        'birthdate',
         'password',
+        'poins',
+        'coins',
     ];
 
     /**
@@ -33,7 +38,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function saved_story(){
+    public function getSavedStoryAttr(){
         //
     }
 }

@@ -24,8 +24,9 @@ class UserPublic extends Model
     protected $hidden = [
         'password',
         'remember_token',
-        'username',
         'birthdate',
+        "poins",
+        "coins",
         'id'
     ];
 }

@@ -17,7 +17,10 @@ Previous API could be look from [here](APIS_old.md).
   - [`POST /api/auth/logout`](#post-apiauthlogout)
   - [`GET  /api/user`](#get--apiuser)
   - [`POST /api/user`](#post-apiuser)
-  - [GET /api/users](#get-apiusers)
+  - [`GET  /api/users`](#get--apiusers)
+  - [`GET  /api/stories`](#get--apistories)
+  - [`GET  /api/stories/recomendation`](#get--apistoriesrecomendation)
+  - [`GET  /api/story/{story_id}`](#get--apistorystory_id)
 
 ## `POST /api/auth/register`
 
@@ -217,7 +220,7 @@ Query    :
 | Key     | Value       | Description             |
 | ------- | ----------- | ----------------------- |
 | `type`  | `add_point` | No description provided |
-| `value` | (string     | integer)                | No description provided |
+| `value` | (integer)   | No description provided |
 
 Response :
 ```
@@ -258,9 +261,10 @@ Content-Type: text/json
 }
 ```
 
-## GET /api/users
+## `GET  /api/users`
 
-Request  : `GET /api/users`
+Request  : 
+`GET  /api/users`
 
 Headers  :
 
@@ -288,3 +292,7 @@ Content-Type: text/json
     }
 ]
 ```
+
+## `GET  /api/stories`
+## `GET  /api/stories/recomendation`
+## `GET  /api/story/{story_id}`
