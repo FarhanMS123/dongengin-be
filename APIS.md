@@ -21,6 +21,7 @@ Previous API could be look from [here](APIS_old.md).
   - [`GET  /api/stories`](#get--apistories)
   - [`GET  /api/stories/recomendation`](#get--apistoriesrecomendation)
   - [`GET  /api/story/{story_id}`](#get--apistorystory_id)
+  - [`POST /api/story/{story_id}`](#post-apistorystory_id)
 
 ## `POST /api/auth/register`
 
@@ -29,6 +30,7 @@ Request: `POST /api/auth/register`
 Headers:
 
 *All headers has been configured automatically*
+*Need not authenticated user to use this feature*
 
 Query:
 
@@ -75,6 +77,7 @@ Request  : `POST /api/auth/login`
 Headers  :
 
 *All headers has been configured automatically*
+*Need not authenticated user to use this feature*
 
 Query    :
 
@@ -125,6 +128,7 @@ Request  : `POST /api/auth/logout`
 Headers  :
 
 *All headers has been configured automatically*
+*Need authenticated user to use this feature*
 
 Query    :
 
@@ -160,6 +164,7 @@ Request  : `GET  /api/user`
 Headers  :
 
 *All headers has been configured automatically*
+*Need authenticated user to use this feature*
 
 Query    :
 
@@ -174,7 +179,7 @@ Content-Type: text/json
     "fullname":"User Name",
     "username":"username123",
     "birthdate":"31/10/2020",
-    "saved_story":[
+    "favorites":[
         {
             "id":12,
             "title":"Malin Kundang",
@@ -214,6 +219,7 @@ Request  : `POST /api/user`
 Headers  :
 
 *All headers has been configured automatically*
+*Need authenticated user to use this feature*
 
 Query    :
 
@@ -294,5 +300,166 @@ Content-Type: text/json
 ```
 
 ## `GET  /api/stories`
+
+Request  : `GET /api/stories`
+
+Headers  :
+
+*All headers has been configured automatically*
+*Authenticated user is optional to use this feature*
+
+Query    :
+
+| Key                        | Value                                                                                                   | Description             |
+| -------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `search` (optional)        | (string)                                                                                                | No description provided |
+| `sort_by` (optional)       | `rating`, `total_views`, `total_favorites`, `total_pages`, `created_at`, `updated_at` default: `rating` | No description provided |
+| `sort_type` (optional)     | `asc`, `desc` default: `desc`                                                                           | No description provided |
+| `items_perpage` (optional) | (integer) default: `9`                                                                                  | No description provided |
+| `page` (optional)          | (integer) default: `1`                                                                                  | No description provided |
+
+Response :
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+[
+    {
+        "id":12,
+        "title":"Malin Kundang",
+        "thumbnail":"/assets/story/malin_kundang.png",
+        "routes":"/story/malin_kundang",
+        "description":"Lorem ipsum dolor sit amet",
+        "categories":["Miangkabau", "dongeng"],
+        "rating":2.5,
+        "rated":4,
+        "is_favorite":true
+        "total_views":120,
+        "total_favorites":23,
+        "total_pages":8
+    },
+    ...
+]
+```
+
 ## `GET  /api/stories/recomendation`
+> this feature is unavailable
+
 ## `GET  /api/story/{story_id}`
+
+Request  : `GET /api/story/{story_id}`
+
+Headers  :
+
+*All headers has been configured automatically*
+*Authenticated user is optional to use this feature*
+
+Query    :
+
+| Key        | Value     | Description             |
+| ---------- | --------- | ----------------------- |
+| `story_id` | (integer) | No description provided |
+
+Response:
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "id":12,
+    "title":"Malin Kundang",
+    "thumbnail":"/assets/story/malin_kundang.png",
+    "routes":"/story/malin_kundang",
+    "description":"Lorem ipsum dolor sit amet",
+    "categories":["Miangkabau", "dongeng"],
+    "rating":2.5,
+    "rated":4,
+    "is_favorite":false
+    "total_views":120,
+    "total_favorites":23,
+    "total_pages":8
+}
+```
+
+## `POST /api/story/{story_id}`
+
+Request  : `POST /api/story/{story_id}`
+
+Headers  :
+
+*All headers has been configured automatically*
+*Need authenticated user to use this feature*
+
+Query    :
+
+| Key                                 | Value                                                      | Description                                                                                                           |
+| ----------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `type`                              | `increase_views`, `set_favorite`, `set_rating`, `set_page` | No description provided                                                                                               |
+| `value` (`type` = `increase_views`) | *NULL*                                                     | No description provided                                                                                               |
+| `value` (`type` = `set_favorite`)   | (boolean)                                                  | No description provided                                                                                               |
+| `value` (`type` = `set_rating`)     | (integer) between `1` and `5`                              | No description provided                                                                                               |
+| `value` (`type` = `set_page`)       | (string) `finish` or `page_{index}`                        | For unfinished reading, value could be `page_` followed by current page number counted from 1. For examples: `page_6` |
+
+Response :
+
+**`type` = `increase_views`**
+**`type` = `set_favorite`**
+**`type` = `set_rating`**
+**`type` = `set_page`**
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok"
+}
+```
+
+**Default Errors**
+
+```
+HTTP/1.1 404 Not Found
+Content-Type: text/json
+
+{
+    "code":400,
+    "status":"not found",
+    "message":"story/not-found"
+}
+```
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: text/json
+
+{
+    "code":400,
+    "status":"bad request",
+    "message":"story/type-invalid"
+}
+```
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: text/json
+
+{
+    "code":400,
+    "status":"bad request",
+    "message":"story/data-invalid",
+    "errors":{ ... errors descripted by Laravel Validator and Messagebag ... }
+}
+```
+
+```
+HTTP/1.1 401 Unauthorized
+Content-Type: text/json
+
+{
+    "code":401,
+    "status":"unauthorized",
+    "message":"story/need-aunthenticated-user"
+}
+```

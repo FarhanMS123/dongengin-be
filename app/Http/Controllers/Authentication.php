@@ -96,7 +96,7 @@ class Authentication extends Controller
         if(Auth::check()){
             $user = $request->user()->toArray();
 
-            // add saved_story
+            // add favorites
 
             return response($user);
         }
@@ -128,20 +128,7 @@ class Authentication extends Controller
 
             switch($request->type){
                 case "add_poin":
-                    $bef = [$user->poins, $user->coins];
-                    $user->poins = $bef[0] + $request->value;
-                    $user->coins = $bef[1] + $request->value;
-
-                    return response()->json([
-                        "code" => 200,
-                        "status" => "ok",
-                        "message" => "user/poins-gained",
-                        "data" => [
-                            "before" => $bef,
-                            "current" => [$user->poins, $user->coins],
-                            "poin_gained" => $request->value
-                        ]
-                    ], 200);
+                    return $this->userAction_addPoin($request, $user);
                     break;
 
                 default:
@@ -158,6 +145,24 @@ class Authentication extends Controller
             "status" => "unauthorized",
             "message" => "auth/no-credential"
         ], 401);
+    }
+
+    public function userAction_addPoin(Request $request, $user){
+        $bef = [$user->poins, $user->coins];
+        $user->poins = $bef[0] + $request->value;
+        $user->coins = $bef[1] + $request->value;
+        $user->save();
+
+        return response()->json([
+            "code" => 200,
+            "status" => "ok",
+            "message" => "user/poins-gained",
+            "data" => [
+                "before" => $bef,
+                "current" => [$user->poins, $user->coins],
+                "poin_gained" => $request->value
+            ]
+        ], 200);
     }
 
     public function users(Request $request){

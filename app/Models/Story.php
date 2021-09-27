@@ -9,7 +9,8 @@ class Story extends Model
 {
     use HasFactory;
 
-    public $rating = 0;
+    public $rated = 0;
+    public $is_favorite = false;
 
     /**
      * The attributes that are mass assignable.

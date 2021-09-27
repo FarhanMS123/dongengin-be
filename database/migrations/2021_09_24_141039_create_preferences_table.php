@@ -17,9 +17,11 @@ class CreatePreferencesTable extends Migration
             $table->id();
 
             $table->foreignId('user_id');
-            $table->string('status');
-            $table->boolean('is_favorite');
+            // status = NULL | finish | page_{index} | category
+            $table->string('status')->nullable();
+            $table->boolean('is_favorite')->default(false);
             $table->json('category')->nullable();
+            $table->integer('rate')->nullable();
             $table->foreignId('story_id')->nullable();
 
             $table->timestamps();
