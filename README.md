@@ -60,7 +60,47 @@ This project's backend is use full of Rest-APIS scheme. The routes and request d
 > There is nothing to see here
 
 ## Notes
-> There is nothing to see here
+- Using SUM and Raw:
+
+```
+    // config/database.php
+    'strict' => true,
+    'modes' => [
+        // 'ONLY_FULL_GROUP_BY',
+        'STRICT_TRANS_TABLES',
+        'NO_ZERO_IN_DATE',
+        'NO_ZERO_DATE',
+        'ERROR_FOR_DIVISION_BY_ZERO',
+        'NO_AUTO_CREATE_USER',
+        'NO_ENGINE_SUBSTITUTION'
+    ],
+```
+
+```
+    use Illuminate\Support\Facades\DB;
+
+    Polio::select('*', DB::raw('SUM(id + anchor_id) as totals'))->groupBy('id')->get();
+```
+
+References: https://stackoverflow.com/a/44984930
+
+- Rebuild the Models
+
+```
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope('ancient', function (Builder $builder) {
+            $builder->where('created_at', '<', now()->subYears(2000));
+        });
+    }
+```
+
+https://laravel.com/docs/8.x/eloquent#anonymous-global-scopes
 
 ## Todo
 > There is nothing to see here
@@ -77,7 +117,7 @@ This project's backend is use full of Rest-APIS scheme. The routes and request d
 > There is nothing to see here
 
 ## References
-> There is nothing to see here
+- https://stackoverflow.com/a/44984930
 
 ## License
 > There is nothing to see here

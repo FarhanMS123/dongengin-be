@@ -316,13 +316,13 @@ Headers  :
 
 Query    :
 
-| Key                        | Value                                                                                                   | Description             |
-| -------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| `search` (optional)        | (string)                                                                                                | No description provided |
-| `sort_by` (optional)       | `rating`, `total_views`, `total_favorites`, `total_pages`, `created_at`, `updated_at` default: `rating` | No description provided |
-| `sort_type` (optional)     | `asc`, `desc` default: `desc`                                                                           | No description provided |
-| `items_perpage` (optional) | (integer) default: `9`                                                                                  | No description provided |
-| `page` (optional)          | (integer) default: `1`                                                                                  | No description provided |
+| Key                        | Value                                                                                                            | Description             |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `search` (optional)        | (string)                                                                                                         | No description provided |
+| `sort_by` (optional)       | `rating`, `total_views`, `total_favorites`, `total_pages`, `created_at`, `updated_at`, `total` default: `rating` | No description provided |
+| `sort_type` (optional)     | `asc`, `desc` default: `desc`                                                                                    | No description provided |
+| `items_perpage` (optional) | (integer) default: `9`                                                                                           | No description provided |
+| `page` (optional)          | (integer) default: `1`                                                                                           | No description provided |
 
 Response :
 ```

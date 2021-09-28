@@ -206,7 +206,18 @@ class Story extends Controller
             );
     }
 
-    public function recomended_story($id){
-        //
+    public function recomended_story(Request $request){
+        $sort_by = $request->sort_by ?? "total";
+        $sort_type = $request->sort_type ?? "desc";
+        $items_perpage = $request->items_perpage ?? 5;
+        $page = $request->page ?? 1;
+
+        $skip = ($page - 1) * $items_perpage;
+
+        return response()
+            ->toJson(
+                StoryModel::orderBy($sort_by, $sort_type)
+                    ->limit($items_perpage)->skip($skip)->get()
+            );
     }
 }

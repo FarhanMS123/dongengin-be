@@ -2,18 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Story extends Model
 {
     use HasFactory;
 
-    public $rated = 0;
-    public $is_favorite = false;
+    protected $appends = ['rated', 'is_favorite', 'preference'];
 
-    protected $preference = null;
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope('totals', function (Builder $builder) {
+            $builder->select('*', DB::raw('SUM(total_views + total_favorites + total_pages) as total'));
+            $builder->groupBy('id');
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +43,15 @@ class Story extends Model
         'total_pages',
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'preference'
+    ];
+
     protected $_preference = null;
     protected function getPreferenceAttribute(){
         if($this->_preference == null && Auth::check()){
@@ -41,11 +62,14 @@ class Story extends Model
     }
 
     public function getIsFavoriteAttribute($value){
-        return $this->preference->is_favorite;
+        $ret = null;
+        if($this->preference) $ret = $this->preference->is_favorite;
+        return $ret;
     }
 
     public function getRatedAttribute($value){
-        return $this->preference->rate;
-        // return Preference::where('story_id', '=', $this->id)->avg('rate');
+        $ret = null;
+        if($this->preference) $ret = $this->preference->rate;
+        return $ret;
     }
 }
