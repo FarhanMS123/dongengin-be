@@ -5,10 +5,6 @@ and response. You could see all interaction in the list below.
 
 Previous API could be look from [here](APIS_old.md).
 
-- `GET  /api/stories`
-- `GET  /api/stories/recomendation`
-- `GET  /api/story/{story_id}`
-
 ## Table of contents
 - [Restfull Application Programming Interface (Rest-API)](#restfull-application-programming-interface-rest-api)
   - [Table of contents](#table-of-contents)
@@ -349,7 +345,51 @@ Content-Type: text/json
 ```
 
 ## `GET  /api/stories/recomendation`
-> this feature is unavailable
+
+Request  : `GET /api/stories`
+
+Headers  :
+
+*All headers has been configured automatically*
+
+*Authenticated user is optional to use this feature*
+
+Query    :
+
+| Key                        | Value                                                                                                           | Description             |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `sort_by` (optional)       | `rating`, `total_views`, `total_favorites`, `total_pages`, `created_at`, `updated_at`, `total` default: `total` | No description provided |
+| `sort_type` (optional)     | `asc`, `desc` default: `desc`                                                                                   | No description provided |
+| `items_perpage` (optional) | (integer) default: `5`                                                                                          | No description provided |
+| `page` (optional)          | (integer) default: `1`                                                                                          | No description provided |
+
+Response :
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+[
+    {
+        "id":12,
+        "title":"Malin Kundang",
+        "thumbnail":"/assets/story/malin_kundang.png",
+        "routes":"/story/malin_kundang",
+        "description":"Lorem ipsum dolor sit amet",
+        "categories":["Miangkabau", "dongeng"],
+        "rating":2.5,
+        "rated":4,
+        "is_favorite":true
+        "total_views":120,
+        "total_favorites":23,
+        "total_pages":8,
+        "total":151
+    },
+    ...
+]
+```
+
+The `total` field is a sum of `total_views`, `total_favorites`, `total_pages`. This is a tricky algorithm for recommendation. Actually this can't be this.
 
 ## `GET  /api/story/{story_id}`
 
