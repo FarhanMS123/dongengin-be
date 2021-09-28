@@ -38,7 +38,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function getSavedStoryAttr(){
-        //
+    public function getFavoritesAttribute(){
+        return Preference::where('is_favorite', '=', true);
     }
 }

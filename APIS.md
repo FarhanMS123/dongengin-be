@@ -30,6 +30,7 @@ Request: `POST /api/auth/register`
 Headers:
 
 *All headers has been configured automatically*
+
 *Need not authenticated user to use this feature*
 
 Query:
@@ -77,6 +78,7 @@ Request  : `POST /api/auth/login`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Need not authenticated user to use this feature*
 
 Query    :
@@ -128,6 +130,7 @@ Request  : `POST /api/auth/logout`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Need authenticated user to use this feature*
 
 Query    :
@@ -164,6 +167,7 @@ Request  : `GET  /api/user`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Need authenticated user to use this feature*
 
 Query    :
@@ -219,6 +223,7 @@ Request  : `POST /api/user`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Need authenticated user to use this feature*
 
 Query    :
@@ -306,6 +311,7 @@ Request  : `GET /api/stories`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Authenticated user is optional to use this feature*
 
 Query    :
@@ -352,6 +358,7 @@ Request  : `GET /api/story/{story_id}`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Authenticated user is optional to use this feature*
 
 Query    :
@@ -399,6 +406,7 @@ Request  : `POST /api/story/{story_id}`
 Headers  :
 
 *All headers has been configured automatically*
+
 *Need authenticated user to use this feature*
 
 Query    :

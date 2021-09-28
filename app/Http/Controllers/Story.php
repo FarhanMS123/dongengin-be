@@ -109,8 +109,14 @@ class Story extends Controller
     public function storyAction_setFavorite(Request $request, $user, $story, $preference){
         $val = $request->value == "true" ? true : false;
 
+        $curr = $preference->is_favorite;
+
         $preference->is_favorite = $val;
         $preference->save();
+
+        // $story->total_favorites = Preference::where('story_id', '=', $story->id)->where('is_favorite', '=', true)->count();
+        $story->total_favorites += (($curr == false && $val == true) ? 1 : (($curr == true && $val == false) ? -1 : 0));
+        $story->save();
 
         $story->refresh();
 
@@ -136,6 +142,9 @@ class Story extends Controller
 
         $preference->rate = $request->value;
         $preference->save();
+
+        $story->rating = Preference::where('story_id', '=', $story->id)->avg('rate');
+        $story->save();
 
         $story->refresh();
 
