@@ -102,6 +102,20 @@ References: https://stackoverflow.com/a/44984930
 
 https://laravel.com/docs/8.x/eloquent#anonymous-global-scopes
 
+- Get ranking and view
+  
+```sql
+CREATE VIEW `ranking` AS
+SELECT *, RANK() OVER(ORDER BY polio_id) as `Rank` FROM `anchors`;
+
+SELECT * FROM `ranking` WHERE 1;
+
+DROP VIEW `ranking`;
+```
+
+https://www.sqlshack.com/overview-of-sql-rank-functions/
+https://www.w3schools.com/sql/sql_ref_create_view.asp
+
 ## Todo
 > There is nothing to see here
 

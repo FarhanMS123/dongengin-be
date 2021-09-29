@@ -14,7 +14,8 @@ class UserPublic extends Model
      *
      * @var string
      */
-    protected $table = 'users';
+    // protected $table = 'users';
+    protected $table = 'ranking';
 
     /**
      * The attributes that should be hidden for serialization.

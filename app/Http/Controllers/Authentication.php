@@ -131,6 +131,10 @@ class Authentication extends Controller
                     return $this->userAction_addPoin($request, $user);
                     break;
 
+                case "use_coin":
+                    // return $this->userAction_addPoin($request, $user);
+                    break;
+
                 default:
                     return response()->json([
                         "code" => 400,

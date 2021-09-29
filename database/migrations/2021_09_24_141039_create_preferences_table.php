@@ -24,6 +24,8 @@ class CreatePreferencesTable extends Migration
             $table->integer('rate')->nullable();
             $table->foreignId('story_id')->nullable();
 
+            $table->timestamp('accessed_at')->useCurrent();
+
             $table->timestamps();
         });
     }

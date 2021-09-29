@@ -63,27 +63,23 @@ class Story extends Controller
                 ]);
         }
 
-        if($p == null)
-            return response()->json([
-                "code" => 401,
-                "status" => "unauthorized",
-                "message" => "story/need-aunthenticated-user"
-            ], 401);
-
         switch($request->type){
             case "increase_views":
                 return $this->storyAction_increaseViews($request, $u, $s, $p);
                 break;
 
             case "set_favorite":
+                if($p == null) return $this->storyNeedAuth();
                 return $this->storyAction_setFavorite($request, $u, $s, $p);
                 break;
 
             case "set_rating":
+                if($p == null) return $this->storyNeedAuth();
                 return $this->storyAction_setRating($request, $u, $s, $p);
                 break;
 
             case "set_page":
+                if($p == null) return $this->storyNeedAuth();
                 return $this->storyAction_setPage($request, $u, $s, $p);
                 break;
         }
@@ -95,7 +91,20 @@ class Story extends Controller
         ], 400);
     }
 
+    public function storyNeedAuth(){
+        return response()->json([
+            "code" => 401,
+            "status" => "unauthorized",
+            "message" => "story/need-aunthenticated-user"
+        ], 401);
+    }
+
     public function storyAction_increaseViews(Request $request, $user, $story, $preference){
+        if($user != null){
+            $preference->accessed_at = now();
+            $preference->save();
+        }
+
         $story->total_views += 1;
         $story->save();
 

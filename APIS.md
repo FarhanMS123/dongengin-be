@@ -189,14 +189,16 @@ Content-Type: text/json
             "categories":["Miangkabau", "dongeng"],
             "rate":2.5,
             "rated":4,
-            "total_views":"",
-            "total_favorites":"",
-            "total_pages":""
+            "total_views":120,
+            "total_favorites":23,
+            "total_pages":8,
+            "total":151
         },
         ...
     ],
     "poins": 200,
-    "coins": 100
+    "coins": 100,
+    "rank": 4
 }
 ```
 Data `saved_story.rated` is user's giving rating to the story.
@@ -224,10 +226,10 @@ Headers  :
 
 Query    :
 
-| Key     | Value       | Description             |
-| ------- | ----------- | ----------------------- |
-| `type`  | `add_point` | No description provided |
-| `value` | (integer)   | No description provided |
+| Key     | Value                  | Description             |
+| ------- | ---------------------- | ----------------------- |
+| `type`  | `add_poin`, `use_coin` | No description provided |
+| `value` | (integer)              | No description provided |
 
 Response :
 ```
@@ -295,8 +297,10 @@ Content-Type: text/json
     {
         "fullname":"Full Name",
         "username":"username123",
-        "poins": 200
-    }
+        "poins": 200,
+        "rank": 4
+    },
+    ...
 ]
 ```
 
@@ -338,7 +342,8 @@ Content-Type: text/json
         "is_favorite":true
         "total_views":120,
         "total_favorites":23,
-        "total_pages":8
+        "total_pages":8,
+        "total":151
     },
     ...
 ]
@@ -376,7 +381,7 @@ Content-Type: text/json
         "thumbnail":"/assets/story/malin_kundang.png",
         "routes":"/story/malin_kundang",
         "description":"Lorem ipsum dolor sit amet",
-        "categories":["Miangkabau", "dongeng"],
+        "categories":["Minagkabau", "dongeng"],
         "rating":2.5,
         "rated":4,
         "is_favorite":true
@@ -424,7 +429,8 @@ Content-Type: text/json
     "is_favorite":false
     "total_views":120,
     "total_favorites":23,
-    "total_pages":8
+    "total_pages":8,
+    "total":151
 }
 ```
 

@@ -13,7 +13,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $appends = ['favorites'];
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['favorites', 'rank', 'history'];
 
     /**
      * The attributes that are mass assignable.
@@ -39,12 +44,26 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function getHistoryAttribute(){
+        return Story::select('stories.*')->join('preferences', 'stories.id', '=', 'preferences.story_id')
+                ->where('preferences.user_id', '=', $this->id)
+                ->where('preferences.is_favorite', '=', true)
+                ->orderBy('accessed_at', 'desc');
+    }
+
     public function getFavoritesAttribute(){
-        $u = $this;
-        return Story::select('stories.*')->join('preferences', function($join) use($u){
-            $join->on('stories.id', '=', 'preferences.story_id')
-                 ->where('preferences.user_id', '=', $u->id)
-                 ->where('preferences.is_favorite', '=', true);
-        });
+        return Story::select('stories.*')->join('preferences', 'stories.id', '=', 'preferences.story_id')
+                ->where('preferences.user_id', '=', $this->id)
+                ->where('preferences.is_favorite', '=', true);
+        // $u = $this;
+        // return Story::select('stories.*')->join('preferences', function($join) use($u){
+        //     $join->on('stories.id', '=', 'preferences.story_id')
+        //          ->where('preferences.user_id', '=', $u->id)
+        //          ->where('preferences.is_favorite', '=', true);
+        // });
+    }
+
+    public function getRankAttribute(){
+        return DB::table('ranking')->where('id', '=', $this->id)->get();
     }
 }

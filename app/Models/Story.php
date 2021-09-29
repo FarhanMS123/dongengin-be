@@ -17,6 +17,8 @@ class Story extends Model
     /**
      * The "booted" method of the model.
      *
+     * Because it calls Auth each creation, it wouldn't efficient.
+     *
      * @return void
      */
     protected static function booted()
@@ -24,6 +26,17 @@ class Story extends Model
         static::addGlobalScope('totals', function (Builder $builder) {
             $builder->select('*', DB::raw('SUM(total_views + total_favorites + total_pages) as total'));
             $builder->groupBy('id');
+
+            // if(Auth::check()){
+            //     $u = Auth::user();
+            //     $builder->select('stories.*',
+            //                      DB::raw('SUM(total_views + total_favorites + total_pages) as total'),
+            //                      DB::raw('preferences.rate as rated'),
+            //                     'preferences.is_favorite');
+            //     $builder->leftJoin('preferences', 'stories.id', '=', 'preferences.story_id');
+            //     $builder->where('user_id', '=', $u->id);
+            //     $builder->groupBy('stories.id');
+            // }
         });
     }
 
