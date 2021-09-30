@@ -51,6 +51,7 @@ class Story extends Model
         'route',
         'description',
         'categories',
+        'rating',
         'total_views',
         'total_favorites',
         'total_pages',
@@ -64,6 +65,14 @@ class Story extends Model
     protected $hidden = [
         'preference'
     ];
+
+    public function getCategoriesAttribute($value){
+        return json_decode($value);
+    }
+
+    public function setCategoriesAttribute($value){
+        return json_encode($value);
+    }
 
     protected $_preference = null;
     protected function getPreferenceAttribute(){
@@ -90,5 +99,12 @@ class Story extends Model
         $ret = null;
         if($this->preference) $ret = $this->preference->status;
         return $ret;
+    }
+
+    public function updateStoryRanking(){
+        $this->rating = Preference::where('story_id', '=', $this->id)->avg('rate');
+        $this->total_favorites = Preference::where('story_id', '=', $this->id)->sum('is_favorite');
+        $this->save();
+        $this->refresh();
     }
 }

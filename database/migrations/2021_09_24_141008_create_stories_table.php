@@ -18,10 +18,10 @@ class CreateStoriesTable extends Migration
 
             $table->string("title");
             $table->string("thumbnail");
-            $table->string("routes");
+            $table->string("route");
             $table->string("description");
-            $table->json("category");
-            $table->integer("total_saved")->default(0);
+            $table->json("categories")->default('[]');
+            $table->integer("rating")->default(0);
             $table->integer("total_views")->default(0);
             $table->integer("total_favorites")->default(0);
             $table->integer("total_pages");
