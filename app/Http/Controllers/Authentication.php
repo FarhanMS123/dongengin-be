@@ -132,7 +132,7 @@ class Authentication extends Controller
                     break;
 
                 case "use_coin":
-                    // return $this->userAction_addPoin($request, $user);
+                    return $this->userAction_useCoin($request, $user);
                     break;
 
                 default:
@@ -165,6 +165,35 @@ class Authentication extends Controller
                 "before" => $bef,
                 "current" => [$user->poins, $user->coins],
                 "poin_gained" => $request->value
+            ]
+        ], 200);
+    }
+
+    public function userAction_useCoin(Request $request, $user){
+        $bef = $user->coins;
+        $user->coins = $bef - $request->value;
+        if($user->coins < 0)
+            $user->save();
+        else
+            return response()->json([
+                "code" => 400,
+                "status" => "bad request",
+                "message" => "user/coins-insufficient",
+                "data" => [
+                    "current" => $bef,
+                    "after_spent" => $user->coins,
+                    "coin_would_spent" => $request->value
+                ]
+            ], 400);
+
+        return response()->json([
+            "code" => 200,
+            "status" => "ok",
+            "message" => "user/coins-spent",
+            "data" => [
+                "before" => $bef,
+                "current" => $user->coins,
+                "coin_spent" => $request->value
             ]
         ], 200);
     }

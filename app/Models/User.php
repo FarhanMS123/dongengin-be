@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = ['favorites', 'rank', 'history'];
+    protected $appends = ['favorites', 'rank', 'history', 'preference'];
 
     /**
      * The attributes that are mass assignable.
@@ -42,25 +42,32 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'preference'
     ];
 
+    protected $_preference = null;
+    protected function getPreferenceAttribute(){
+        if($this->_preference == null){
+            $this->_preference = Story::select('stories.*')
+                        ->join('preferences', 'stories.id', '=', 'preferences.story_id')
+                        ->where('preferences.user_id', '=', $this->id)->get();
+
+            // $u = $this;
+            // return Story::select('stories.*')->join('preferences', function($join) use($u){
+            //     $join->on('stories.id', '=', 'preferences.story_id')
+            //          ->where('preferences.user_id', '=', $u->id)
+            //          ->where('preferences.is_favorite', '=', true);
+            // });
+        }
+        return $this->_preference;
+    }
+
     public function getHistoryAttribute(){
-        return Story::select('stories.*')->join('preferences', 'stories.id', '=', 'preferences.story_id')
-                ->where('preferences.user_id', '=', $this->id)
-                ->where('preferences.is_favorite', '=', true)
-                ->orderBy('accessed_at', 'desc');
+        return $this->preference->orderBy('accessed_at', 'desc')->get();
     }
 
     public function getFavoritesAttribute(){
-        return Story::select('stories.*')->join('preferences', 'stories.id', '=', 'preferences.story_id')
-                ->where('preferences.user_id', '=', $this->id)
-                ->where('preferences.is_favorite', '=', true);
-        // $u = $this;
-        // return Story::select('stories.*')->join('preferences', function($join) use($u){
-        //     $join->on('stories.id', '=', 'preferences.story_id')
-        //          ->where('preferences.user_id', '=', $u->id)
-        //          ->where('preferences.is_favorite', '=', true);
-        // });
+        return $this->preference->where('preferences.is_favorite', '=', true)->get();
     }
 
     public function getRankAttribute(){

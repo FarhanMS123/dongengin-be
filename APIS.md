@@ -232,6 +232,9 @@ Query    :
 | `value` | (integer)              | No description provided |
 
 Response :
+
+**`type` = `add_poin`**
+
 ```
 HTTP/1.1 200 OK
 Content-Type: text/json
@@ -248,6 +251,41 @@ Content-Type: text/json
 }
 ```
 
+**`type` = `use_coin`**
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "message":"user/coins-spent",
+    "data":{
+        "before": ...coins...,
+        "current": ...spent coins...,
+        "coin_spent": ... `value` from query ...
+    }
+}
+```
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "message":"user/coins-insufficient",
+    "data":{
+        "current": ...coins...,
+        "after_spent": ...spent coins...,
+        "coin_would_spent": ... `value` from query ...
+    }
+}
+```
+
+**Default Errors**
 ```
 HTTP/1.1 400 Bad Request
 Content-Type: text/json
@@ -469,9 +507,56 @@ Response :
 
 **`type` = `increase_views`**
 
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "story" => "story/views-increased"
+}
+```
+
 **`type` = `set_favorite`**
 
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "message" => "story/favorite-updated",
+    "data" => ... story ...
+}
+```
+
 **`type` = `set_rating`**
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "message" => "story/favorite-updated",
+    "data" => ... story ...
+}
+```
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: text/json
+
+{
+    "code":400,
+    "status":"bad request",
+    "message" => "story/value-invalid",
+    "description" => "value must between 1 and 5"
+}
+```
 
 **`type` = `set_page`**
 
@@ -481,9 +566,22 @@ Content-Type: text/json
 
 {
     "code":200,
-    "status":"ok"
+    "status":"ok",
+    "message" => "story/status-updated",
+    "data" => ... story ...
 }
 ```
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: text/json
+
+{
+    "code":400,
+    "status":"bad request",
+    "message" => "story/value-invalid",
+    "description" => "value must be 'finish' or 'page_' followed by page number counted from 1"
+}
 
 **Default Errors**
 

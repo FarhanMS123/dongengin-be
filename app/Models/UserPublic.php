@@ -26,7 +26,6 @@ class UserPublic extends Model
         'password',
         'remember_token',
         'birthdate',
-        "poins",
         "coins",
         'id'
     ];

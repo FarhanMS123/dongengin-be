@@ -111,7 +111,7 @@ class Story extends Controller
         return response()->json([
             "code" => 200,
             "status" => "ok",
-            "story" => "story/views-increased"
+            "message" => "story/views-increased"
         ], 200);
     }
 
@@ -132,7 +132,7 @@ class Story extends Controller
         return response()->json([
             "code" => 200,
             "status" => "ok",
-            "story" => "story/favorite-updated",
+            "message" => "story/favorite-updated",
             "data" => $story
         ], 200);
     }
@@ -160,7 +160,7 @@ class Story extends Controller
         return response()->json([
             "code" => 200,
             "status" => "ok",
-            "story" => "story/rating-updated",
+            "message" => "story/rating-updated",
             "data" => $story
         ], 200);
     }
@@ -187,7 +187,7 @@ class Story extends Controller
         return response()->json([
             "code" => 200,
             "status" => "ok",
-            "story" => "story/status-updated",
+            "message" => "story/status-updated",
             "data" => $story
         ], 200);
     }

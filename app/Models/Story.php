@@ -12,7 +12,7 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $appends = ['rated', 'is_favorite', 'preference'];
+    protected $appends = ['rated', 'is_favorite', 'preference', 'status'];
 
     /**
      * The "booted" method of the model.
@@ -83,6 +83,12 @@ class Story extends Model
     public function getRatedAttribute($value){
         $ret = null;
         if($this->preference) $ret = $this->preference->rate;
+        return $ret;
+    }
+
+    public function getStatusAttribute($value){
+        $ret = null;
+        if($this->preference) $ret = $this->preference->status;
         return $ret;
     }
 }
