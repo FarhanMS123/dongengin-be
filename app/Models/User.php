@@ -73,4 +73,12 @@ class User extends Authenticatable
     public function getRankAttribute(){
         return DB::table('ranking')->where('id', '=', $this->id)->get();
     }
+
+    // public function getCardsAttribute($value){
+    //     return collect(json_decode($value));
+    // }
+
+    // public function setCardsAttribute($value){
+    //     return collect($value)->toJson();
+    // }
 }

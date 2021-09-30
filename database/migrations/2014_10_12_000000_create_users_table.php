@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->date("birthdate");
             $table->string('password');
+            $table->json('cards')->default('[]');
             $table->integer('poins')->default(0);
             $table->integer('coins')->default(0);
 
