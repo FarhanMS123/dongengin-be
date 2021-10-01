@@ -582,6 +582,7 @@ Content-Type: text/json
     "message" => "story/value-invalid",
     "description" => "value must be 'finish' or 'page_' followed by page number counted from 1"
 }
+```
 
 **Default Errors**
 
