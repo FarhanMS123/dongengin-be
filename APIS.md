@@ -196,6 +196,7 @@ Content-Type: text/json
         },
         ...
     ],
+    "cards":[1,3,6,7],
     "poins": 200,
     "coins": 100,
     "rank": 4

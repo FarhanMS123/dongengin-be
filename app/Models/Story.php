@@ -24,8 +24,9 @@ class Story extends Model
     protected static function booted()
     {
         static::addGlobalScope('totals', function (Builder $builder) {
-            $builder->select('*', DB::raw('SUM(total_views + total_favorites + total_pages) as total'));
-            $builder->groupBy('id');
+            $builder->select('stories.*',
+                            DB::raw('SUM(total_views + total_favorites + total_pages) as total'));
+            $builder->groupBy('stories.id');
 
             // if(Auth::check()){
             //     $u = Auth::user();
@@ -78,6 +79,7 @@ class Story extends Model
     protected function getPreferenceAttribute(){
         if($this->_preference == null && Auth::check()){
             $u = Auth::user();
+            // $this->_preference = [$this->id, $u->id];
             $this->_preference = Preference::where('story_id', '=', $this->id)->where('user_id', '=', $u->id)->get();
         }
         return $this->_preference;
@@ -85,19 +87,22 @@ class Story extends Model
 
     public function getIsFavoriteAttribute($value){
         $ret = null;
-        if($this->preference) $ret = $this->preference->is_favorite;
+        // $ret = $this->preference;
+        if($this->preference) $ret = $this->preference[0]->is_favorite;
         return $ret;
     }
 
     public function getRatedAttribute($value){
         $ret = null;
-        if($this->preference) $ret = $this->preference->rate;
+        // $ret = $this->preference;
+        if($this->preference) $ret = $this->preference[0]->rate;
         return $ret;
     }
 
     public function getStatusAttribute($value){
         $ret = null;
-        if($this->preference) $ret = $this->preference->status;
+        // $ret = $this->preference;
+        if($this->preference) $ret = $this->preference[0]->status;
         return $ret;
     }
 

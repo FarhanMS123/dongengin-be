@@ -50,12 +50,14 @@ class UserSeeder extends Seeder
             'remember_token' => Str ::random(10),
         ]);
 
+        $faker = \Faker\Factory::create();
+
         for($i=0; $i<5; $i++){
-            $this->makePreference($u->id);
+            $this->makePreference($u->id, $faker);
         }
     }
 
-    public function makePreference($user_id){
+    public function makePreference($user_id, $faker){
         $rate = rand(0, 5);
         $page = rand(0, 5);
         Preference::create([
@@ -66,7 +68,7 @@ class UserSeeder extends Seeder
             'rate' => ($rate == 0 ? null : $rate),
             // 'story_id' => $this->faker->unique()->numberBetween(1, 9)
             // 'story_id' => $this->faker->numberBetween(1, 9)
-            'story_id' => rand(1,9)
+            'story_id' => $faker->unique()->numberBetween(1, 8)
         ]);
     }
 }

@@ -195,7 +195,7 @@ class Story extends Controller
     public function stories(Request $request){
         $search = $request->search ?? "";
         $sort_by = $request->sort_by ?? "rating";
-        $sort_type = $request->sort_type ?? "asc";
+        $sort_type = $request->sort_type ?? "desc";
         $items_perpage = $request->items_perpage ?? 10;
         $page = $request->page ?? 1;
 
@@ -206,7 +206,7 @@ class Story extends Controller
         // but i can't.
 
         return response()
-            ->toJson(
+            ->json(
                 StoryModel::where("title", "like", "%$search%")
                     ->orWhere("description", "like", "%$search%")
                     ->orWhere("categories", "like", "%$search%")
@@ -224,7 +224,7 @@ class Story extends Controller
         $skip = ($page - 1) * $items_perpage;
 
         return response()
-            ->toJson(
+            ->json(
                 StoryModel::orderBy($sort_by, $sort_type)
                     ->limit($items_perpage)->skip($skip)->get()
             );

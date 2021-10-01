@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/panel/artisan', [Panel::class, "artisan"]);
+Route::get('/panel/executor', [Panel::class, "executor"]);
 
 Route::post('/auth/register', [Authentication::class, "register"]);
 Route::post('/auth/login', [Authentication::class, "login"]);

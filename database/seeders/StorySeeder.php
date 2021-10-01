@@ -18,8 +18,8 @@ class StorySeeder extends Seeder
             'title' => "Jaka Tarub",
             "thumbnail" => "/assets/stories/jakatarub.png",
             "route" => "/story/jaka-tarub",
-            "description" => "Legenda Jaka Tarub adalah salah satu cerita rakyat yang diabadikan dalam naskah populer Sastra Jawa Baru, Babad Tanah Jawi.\n\n
-                              Kisah ini berputar pada kehidupan tokoh utama yang bernama Jaka Tarub (\"pemuda dari Tarub\"). Setelah dewasa ia digelari Ki Ageng Tarub. Ki Ageng Tarub adalah tokoh yang dianggap sebagai leluhur dinasti Mataram, dinasti yang menguasai politik tanah Jawa - sebagian atau seluruhnya - sejak abad ke-17 hingga sekarang. Menurut sumber masyarakat di desa Widodaren, Gerih, Ngawi, peristiwa ini terjadi di desa tersebut. Sebagai bukti masyarakat setempat percaya karena terdapat petilasan makam Jaka Tarub di desa tersebut. Rata-rata masyarakat setempat yang sudah lanjut usia tahu jalan cerita Jaka Tarub dengan 7 bidadari. Nama desa Widodaren itu dipercayai masyarakat setempat berasal dari kata widodari yang berarti dalam bahasa Indonesia adalah bidadari. Di desa ini juga terdapat sendang yang konon dulu adalah tempat para bidadari mandi dan Jaka Tarub mengambil selendang salah satu bidadari.",
+            "description" => "Legenda Jaka Tarub adalah salah satu cerita rakyat yang diabadikan dalam naskah populer Sastra Jawa Baru, Babad Tanah Jawi.\n\n" .
+                             "Kisah ini berputar pada kehidupan tokoh utama yang bernama Jaka Tarub (\"pemuda dari Tarub\"). Setelah dewasa ia digelari Ki Ageng Tarub. Ki Ageng Tarub adalah tokoh yang dianggap sebagai leluhur dinasti Mataram, dinasti yang menguasai politik tanah Jawa - sebagian atau seluruhnya - sejak abad ke-17 hingga sekarang. Menurut sumber masyarakat di desa Widodaren, Gerih, Ngawi, peristiwa ini terjadi di desa tersebut. Sebagai bukti masyarakat setempat percaya karena terdapat petilasan makam Jaka Tarub di desa tersebut. Rata-rata masyarakat setempat yang sudah lanjut usia tahu jalan cerita Jaka Tarub dengan 7 bidadari. Nama desa Widodaren itu dipercayai masyarakat setempat berasal dari kata widodari yang berarti dalam bahasa Indonesia adalah bidadari. Di desa ini juga terdapat sendang yang konon dulu adalah tempat para bidadari mandi dan Jaka Tarub mengambil selendang salah satu bidadari.",
             "categories" => '[""]',
             "rating" => 0,
             "total_views" => rand(0, 200),
@@ -79,9 +79,8 @@ class StorySeeder extends Seeder
             'title' => "Si Buta dari Gua Hantu",
             "thumbnail" => "/assets/stories/sibutadariguahantu.png",
             "route" => "/story/si-buta-dari-gua-hantu",
-            "description" => "Si Buta Dari Gua Hantu adalah karakter utama dalam serial cerita silat yang diciptakan oleh komikus Ganes TH dari Indonesia pada tahun 1960-an. Komik ini pertama kali terbit pada tahun 1967 dan dicetak ulang kembali pada tahun 2005. Komik ini adalah salah satu komik silat pertama karya komikus Indonesia yang telah memopulerkan cerita silat khas nusantara. Komik ini begitu populer sehingga diadaptasi menjadi sebuah film layar lebar bergenre film laga pada tahun 1970 dengan judul yang sama.\n\n
-
-            Pada zamannya, karakter Si Buta telah dikenal pembaca dari berbagai pulau di Indonesia karena petualangan Si Buta dimulai dari Banten hingga menyeberang ke banyak pulau seperti Bali, Flores, Kalimantan, Sulawesi Selatan, dan Sulawesi Tengah.",
+            "description" => "Si Buta Dari Gua Hantu adalah karakter utama dalam serial cerita silat yang diciptakan oleh komikus Ganes TH dari Indonesia pada tahun 1960-an. Komik ini pertama kali terbit pada tahun 1967 dan dicetak ulang kembali pada tahun 2005. Komik ini adalah salah satu komik silat pertama karya komikus Indonesia yang telah memopulerkan cerita silat khas nusantara. Komik ini begitu populer sehingga diadaptasi menjadi sebuah film layar lebar bergenre film laga pada tahun 1970 dengan judul yang sama.\n\n" .
+                             "Pada zamannya, karakter Si Buta telah dikenal pembaca dari berbagai pulau di Indonesia karena petualangan Si Buta dimulai dari Banten hingga menyeberang ke banyak pulau seperti Bali, Flores, Kalimantan, Sulawesi Selatan, dan Sulawesi Tengah.",
             "categories" => '[""]',
             "rating" => 0,
             "total_views" => rand(0, 200),

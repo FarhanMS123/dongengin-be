@@ -96,9 +96,7 @@ class Authentication extends Controller
         if(Auth::check()){
             $user = $request->user()->toArray();
 
-            // add favorites
-
-            return response()->toJson($user);
+            return response()->json($user);
         }
 
         return response()->json([
@@ -212,7 +210,7 @@ class Authentication extends Controller
         $skip = ($page - 1) * $items_perpage;
 
         return response()
-            ->toJson(
+            ->json(
                 UserPublic::where("fullname", "like", "%$search%")
                     ->orWhere("username", "like", "%$search%")
                     ->orWhere("poins", "like", "%$search%")
