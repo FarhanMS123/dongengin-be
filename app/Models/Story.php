@@ -88,21 +88,25 @@ class Story extends Model
     public function getIsFavoriteAttribute($value){
         $ret = null;
         // $ret = $this->preference;
-        if($this->preference) $ret = $this->preference[0]->is_favorite;
+        if($this->preference && $this->preference->count() > 0){
+            $ret = $this->preference[0]->is_favorite;
+        }
         return $ret;
     }
 
     public function getRatedAttribute($value){
         $ret = null;
         // $ret = $this->preference;
-        if($this->preference) $ret = $this->preference[0]->rate;
+        if($this->preference && $this->preference->count() > 0)
+            $ret = $this->preference[0]->rate;
         return $ret;
     }
 
     public function getStatusAttribute($value){
         $ret = null;
         // $ret = $this->preference;
-        if($this->preference) $ret = $this->preference[0]->status;
+        if($this->preference && $this->preference->count() > 0)
+            $ret = $this->preference[0]->status;
         return $ret;
     }
 

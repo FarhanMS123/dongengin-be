@@ -45,6 +45,15 @@ class User extends Authenticatable
         'preference'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'birthdate' => 'date',
+    ];
+
     protected $_preference = null;
     protected function getPreferenceAttribute(){
         if($this->_preference == null){
@@ -73,8 +82,7 @@ class User extends Authenticatable
     }
 
     public function getRankAttribute(){
-        if($this->preference == null) return null;
-        return DB::table('ranking')->where('id', '=', $this->id)->get();
+        return DB::table('ranking')->where('id', '=', $this->id)->get()[0]->rank;
     }
 
     // public function getCardsAttribute($value){

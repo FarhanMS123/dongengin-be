@@ -35,3 +35,10 @@ Route::get('/story/{story_id}', [Story::class, "story"]);
 Route::post('/story/{story_id}', [Story::class, "storyAction"]);
 Route::get('/stories', [Story::class, "stories"]);
 Route::get('/stories/recomendation', [Story::class, "recomended_story"]);
+
+Route::any('/{r?}', function(){
+    return response()->json([
+        "code" => 404,
+        "status" => "not found"
+    ], 404);
+})->where('r', '.*');
