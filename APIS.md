@@ -179,6 +179,23 @@ Content-Type: text/json
     "fullname":"User Name",
     "username":"username123",
     "birthdate":"31/10/2020",
+    "history":[
+        {
+            "id":12,
+            "title":"Malin Kundang",
+            "thumbnail":"/assets/story/malin_kundang.png",
+            "routes":"/story/malin_kundang",
+            "description":"Lorem ipsum dolor sit amet",
+            "categories":["Miangkabau", "dongeng"],
+            "rate":2.5,
+            "rated":4,
+            "total_views":120,
+            "total_favorites":23,
+            "total_pages":8,
+            "total":151
+        },
+        ...
+    ]
     "favorites":[
         {
             "id":12,

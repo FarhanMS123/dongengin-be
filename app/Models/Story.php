@@ -12,7 +12,7 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $appends = ['rated', 'is_favorite', 'preference', 'status'];
+    protected $appends = ['rated', 'is_favorite', 'preference', 'status', 'accessed_at'];
 
     /**
      * The "booted" method of the model.
@@ -107,6 +107,14 @@ class Story extends Model
         // $ret = $this->preference;
         if($this->preference && $this->preference->count() > 0)
             $ret = $this->preference[0]->status;
+        return $ret;
+    }
+
+    public function getAccessedAtAttribute($value){
+        $ret = null;
+        // $ret = $this->preference;
+        if($this->preference && $this->preference->count() > 0)
+            $ret = $this->preference[0]->accessed_at;
         return $ret;
     }
 
