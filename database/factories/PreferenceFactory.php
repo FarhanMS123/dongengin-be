@@ -29,7 +29,9 @@ class PreferenceFactory extends Factory
             'is_favorite' => rand(0, 1),
             // 'category',
             'rate' => ($rate == 0 ? null : $rate),
-            'story_id' => $this->faker->unique()->numberBetween(1, 9)
+            // 'story_id' => $this->faker->unique()->numberBetween(1, 9)
+            // 'story_id' => $this->faker->numberBetween(1, 9)
+            'story_id' => rand(1,9)
         ];
     }
 }

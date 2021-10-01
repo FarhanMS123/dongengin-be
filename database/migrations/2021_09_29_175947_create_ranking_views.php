@@ -15,7 +15,7 @@ class CreateRankingViews extends Migration
     public function up()
     {
         DB::statement("
-            CREATE VIEW `ranking` AS
+            CREATE OR REPLACE VIEW `ranking` AS
                 SELECT *, RANK() OVER(ORDER BY `poins` DESC)
                 AS `rank` FROM `users`
         ");

@@ -51,16 +51,16 @@ class UserFactory extends Factory
      *
      * @return $this
      */
-    public function configure()
-    {
-        return $this->afterMaking(function (User $user) {
-            PreferenceFactory::new()->count(8)->make([
-                'user_id' => $user->id
-            ]);
-        })->afterCreating(function (User $user) {
-            //
-        });
-    }
+    // public function configure()
+    // {
+    //     return $this->afterMaking(function (User $user) {
+    //         PreferenceFactory::new()->count(5)->make([
+    //             'user_id' => $user->id
+    //         ]);
+    //     })->afterCreating(function (User $user) {
+    //         //
+    //     });
+    // }
 
     /**
      * Indicate that the model's email address should be unverified.
