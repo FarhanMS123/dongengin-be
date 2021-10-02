@@ -27,6 +27,7 @@ class UserPublic extends Model
         'remember_token',
         'birthdate',
         "coins",
+        "cards",
         'id'
     ];
 }

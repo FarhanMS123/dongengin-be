@@ -54,31 +54,18 @@ class User extends Authenticatable
         'birthdate' => 'date',
     ];
 
-    protected $_preference = null;
-    protected function getPreferenceAttribute(){
-        if($this->_preference == null){
-            $this->_preference = Story::select('stories.*')
-                        ->join('preferences', 'stories.id', '=', 'preferences.story_id')
-                        ->where('preferences.user_id', '=', $this->id);
-
-            // $u = $this;
-            // return Story::select('stories.*')->join('preferences', function($join) use($u){
-            //     $join->on('stories.id', '=', 'preferences.story_id')
-            //          ->where('preferences.user_id', '=', $u->id)
-            //          ->where('preferences.is_favorite', '=', true);
-            // });
-        }
-        return $this->_preference;
-    }
-
     public function getHistoryAttribute(){
-        if($this->preference == null) return null;
-        return $this->preference->orderBy('accessed_at', 'desc')->get();
+        return Story::select('stories.*')
+                ->join('preferences', 'stories.id', '=', 'preferences.story_id')
+                ->where('preferences.user_id', '=', $this->id)
+                ->orderBy('preferences.accessed_at', 'desc')->get();
     }
 
     public function getFavoritesAttribute(){
-        if($this->preference == null) return null;
-        return $this->preference->where('preferences.is_favorite', '=', true)->get();
+        return Story::select('stories.*')
+                ->join('preferences', 'stories.id', '=', 'preferences.story_id')
+                ->where('preferences.user_id', '=', $this->id)
+                ->where('preferences.is_favorite', '=', true)->get();
     }
 
     public function getRankAttribute(){

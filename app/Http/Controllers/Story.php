@@ -54,13 +54,14 @@ class Story extends Controller
 
         if($u){
             $p = Preference::where("user_id", '=', $u->id)
-                            ->where("story_id", '=', $s->id);
+                            ->where("story_id", '=', $s->id)->get();
 
-            if($p == null)
+            if($p == null || $p->count() == 0)
                 $p = Preference::create([
                     "user_id" => $u->id,
                     "story_id" => $s->id
                 ]);
+            else $p = $p[0];
         }
 
         switch($request->type){
