@@ -1,7 +1,9 @@
 # DongengIn - Frontend (ReactJS) Source Code
+
 > This Readme is describe DongengIn and Dongengin Backend development status. If you are looking for Backend' Readme and License, please continue to [this page](./README_laravel.md)
 
 ## Installation
+
 > You could just skip this section as this project's backend-part has been installed properly. The purposes of this are to describe how to setup the project at first and what modules are used in the development. Please consider to edit to this section whenever you add new modules or restructuring the folders and files.
 
 This project has been build using `composer create-project`, and some modules showed below.
@@ -11,7 +13,8 @@ composer create-project laravel/laravel dongengin-be
 ```
 
 You could take a look to these documentation
-- https://laravel.com/
+
+-   https://laravel.com/
 
 ## Setting Up
 
@@ -26,9 +29,10 @@ Let Node Package Manager do its job. The PM would also install `react-scripts` w
 You may need `.env` configuration whenever you need to setting NodeJS and `react-scripts` behavior, application key (public_key or private_key), or any global variables needed by the app. If you do not like the concept of `.env`, NodeJS and `react-scripts` would do their default behavior, and set configuration variables straight in the `src` folder. The `.env` configuration could be accessed from references below.
 
 Take a look
-- https://create-react-app.dev/docs/available-scripts
-- https://create-react-app.dev/docs/adding-custom-environment-variables
-- https://create-react-app.dev/docs/advanced-configuration
+
+-   https://create-react-app.dev/docs/available-scripts
+-   https://create-react-app.dev/docs/adding-custom-environment-variables
+-   https://create-react-app.dev/docs/advanced-configuration
 
 ## Entity Relationship Document
 
@@ -51,16 +55,20 @@ After that, you would get a `build` folder. This folder has all compiled version
 > Note: In relative path, you may need change all urls using `{{ asset() }}` or `{{ url() }}`. Or you could just serve it via `php artisan serve`.
 
 ## Program Workflow
+
 This project's backend is use full of Rest-APIS scheme. The routes and request documentation could be seen in [APIS.md](./APIS.md).
 
 ## Features
+
 > There is nothing to see here
 
 ## Need to Check
+
 > There is nothing to see here
 
 ## Notes
-- Using SUM and Raw:
+
+-   Using SUM and Raw:
 
 ```
     // config/database.php
@@ -84,7 +92,7 @@ This project's backend is use full of Rest-APIS scheme. The routes and request d
 
 References: https://stackoverflow.com/a/44984930
 
-- Rebuild the Models
+-   Rebuild the Models
 
 ```
     /**
@@ -102,8 +110,8 @@ References: https://stackoverflow.com/a/44984930
 
 https://laravel.com/docs/8.x/eloquent#anonymous-global-scopes
 
-- Get ranking and view
-  
+-   Get ranking and view
+
 ```sql
 CREATE VIEW `ranking` AS
 SELECT *, RANK() OVER(ORDER BY polio_id) as `Rank` FROM `anchors`;
@@ -117,21 +125,46 @@ https://www.sqlshack.com/overview-of-sql-rank-functions/
 https://www.w3schools.com/sql/sql_ref_create_view.asp
 
 ## Todo
+
 > There is nothing to see here
 
 ### Suspended
+
 > There is nothing to see here
 
 ### Next up
+
 > There is nothing to see here
 
 > Remove all tasks above while everything has done, wants to continue to next tasks, or would be merged to the master routes and serve in production.
 
 ## Security Issue
+
 > There is nothing to see here
 
 ## References
-- https://stackoverflow.com/a/44984930
+
+-   https://stackoverflow.com/a/44984930
+
+-   Assets for Home -> https://www.freepik.com/free-vector/fantasy-blue-castle-rock-morning_12900211.htm#page=1&query=castle&position=2&from_view=search
+-   Assets for Masuk/Daftar -> https://www.freepik.com/free-vector/dragon-flying-towards-castle_2584214.htm#page=1&query=dragon&position=15
+
+-   Assets for Dongeng Thumbnail ->
+
+    -   Si Pitung -> https://www.youtube.com/watch?v=1ZTvayQwpkQ
+    -   Malin Kundang -> https://www.youtube.com/watch?v=VoqEu-hHz-M&ab_channel=Alrain
+    -   Si Buta dari Gua Hantu -> https://bumilangit.fandom.com/wiki/Si_Buta_Dari_Gua_Hantu_(Pusaka)
+    -   Timun Mas -> https://kumparan.com/viral-food-travel/contoh-cerita-rakyat-kisah-timun-mas-mengalahkan-raksasa-yang-ingin-memakannya-1v1jnU6HtcX
+    -   Keong Mas -> https://dongengceritarakyat.com/cerita-rakyat-indonesia-dongeng-keong-mas/
+    -   Lutung Kasarung dan Purbasari -> https://www.popmama.com/kid/1-3-years-old/jemima/dongeng-nusantara-lutung-kasarung-dan-purbasari
+    -   Jaka Tarub -> https://histori.id/kisah-jaka-tarub-dan-tujuh-bidadari/
+    -   Kancil dan Timun -> http://www.riri.id/nostalgia-bareng-si-cerdik-yang-suka-mentimun
+
+-   Assets for Dongeng Cerita
+    -   Malin Kundang -> https://www.youtube.com/watch?v=VoqEu-hHz-M&ab_channel=Alrain
+        -> https://www.popmama.com/kid/4-5-years-old/jemima/dongeng-anak-malin-kundang-anak-durhaka
+-   Assets for "Koleksi Kartu" -> https://www.freepik.com/gienlee
 
 ## License
+
 > There is nothing to see here
