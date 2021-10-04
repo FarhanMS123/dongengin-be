@@ -244,10 +244,10 @@ Headers  :
 
 Query    :
 
-| Key     | Value                  | Description             |
-| ------- | ---------------------- | ----------------------- |
-| `type`  | `add_poin`, `use_coin` | No description provided |
-| `value` | (integer)              | No description provided |
+| Key     | Value                              | Description             |
+| ------- | ---------------------------------- | ----------------------- |
+| `type`  | `add_poin`, `use_coin`, `add_card` | No description provided |
+| `value` | (integer)                          | No description provided |
 
 Response :
 
@@ -300,6 +300,19 @@ Content-Type: text/json
         "after_spent": ...spent coins...,
         "coin_would_spent": ... `value` from query ...
     }
+}
+```
+
+**`type` = `add_card`**
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/json
+
+{
+    "code":200,
+    "status":"ok",
+    "message":"user/card_added"
 }
 ```
 
